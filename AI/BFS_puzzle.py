@@ -51,6 +51,3 @@ if __name__ == "__main__":
                 continue
             else:
                 open_queue.append(state.board)
-
-#        print(closed_queue)
-#        print(open_queue)

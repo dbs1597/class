@@ -1,7 +1,8 @@
 import time
 
+
 class State:
-    def __init__(self, board, moves = 0):
+    def __init__(self, board, moves=0):
         self.board = board
         self.moves = moves
 
@@ -14,17 +15,18 @@ class State:
         result = []
         i = self.board.index(0)
         if not i in [0, 1, 2]:
-            result.insert(0, self.get_new_board(i, i-3, moves))
+            result.insert(0, self.get_new_board(i, i - 3, moves))
         if not i in [0, 3, 6]:
-            result.insert(0, self.get_new_board(i, i-1, moves))
+            result.insert(0, self.get_new_board(i, i - 1, moves))
         if not i in [2, 5, 8]:
-            result.insert(0, self.get_new_board(i, i+1, moves))
+            result.insert(0, self.get_new_board(i, i + 1, moves))
         if not i in [6, 7, 8]:
-            result.insert(0, self.get_new_board(i, i+3, moves))
+            result.insert(0, self.get_new_board(i, i + 3, moves))
         return result
-        
+
     def __str__(self):
-        return str(self.board[:3]) + "\n" + str(self.board[3:6]) + "\n" + str(self.board[6:]) + "\n" + "------------------"
+        return str(self.board[:3]) + "\n" + str(self.board[3:6]) + "\n" + str(
+            self.board[6:]) + "\n" + "------------------"
 
 
 if __name__ == "__main__":
@@ -33,14 +35,16 @@ if __name__ == "__main__":
     goal = [1, 2, 3, 4, 5, 6, 7, 8, 0]
 
     open_stack = []
-    #open_stack.append(State(puzzle, goal))
+    # open_stack.append(State(puzzle, goal))
     open_stack.insert(0, puzzle)
 
     closed_stack = []
     moves = 0
+
+    start = time.time()
     while len(open_stack) != 0:
 
-        #current = open_stack.pop(0)
+        # current = open_stack.pop(0)
         current = State(open_stack.pop(0))
         print(current)
         if current.board == goal:
@@ -53,7 +57,5 @@ if __name__ == "__main__":
                 continue
             else:
                 open_stack.insert(0, state.board)
-                
-        print(closed_stack)
-        print(open_stack)
-        time.sleep(0.5)
+
+    print("Run time:", time.time() - start)
