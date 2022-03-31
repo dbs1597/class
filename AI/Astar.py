@@ -1,4 +1,6 @@
 import queue
+import time
+
 
 class State:
   def __init__(self, board, goal, moves = 0):
@@ -63,34 +65,37 @@ class State:
 if __name__ == "__main__":
 
     # 정오표에서 수정된 초기상태
-    puzzle = [8, 3, 5,
-              7, 1, 6,
-              0, 2, 4]
+    puzzle = [2, 8, 3,
+              1, 6, 4,
+              7, 0, 5]
     # 기존 초기상태 puzzle = [1, 2, 3, 0, 4, 6, 7, 5, 8]
 
     goal = [1, 2, 3,
-            4, 5, 6,
-            7, 8, 0]
+            8, 0, 4,
+            7, 6, 5]
 
     open_queue = queue.PriorityQueue()
     open_queue.put(State(puzzle, goal))
 
     closed_queue = [ ]
     moves = 0
+    start = time.time()
     while not open_queue.empty():
       
-      current = open_queue.get()
-      print(current)
-      if current.board == goal:
-          # print(current)
-          print("Success")
-#          print("open queue 길이 =", open_queue.qsize())
-#          print("closed queue 길이 =", len(closed_queue))
-          break
-      moves = current.moves + 1
-      for state in current.expand(moves):
-        if (state not in closed_queue) and (state not in open_queue.queue):
-          open_queue.put(state)
-      closed_queue.append(current)
+        current = open_queue.get()
+        print(current)
+        if current.board == goal:
+            # print(current)
+            print("Success")
+            # print("open queue 길이 =", open_queue.qsize())
+            # print("closed queue 길이 =", len(closed_queue))
+            break
+        moves = current.moves + 1
+        for state in current.expand(moves):
+            if (state not in closed_queue) and (state not in open_queue.queue):
+                open_queue.put(state)
+        closed_queue.append(current)
     else:
-      print ('Fail')
+        print ('Fail')
+
+    print("Run time:", time.time() - start)
