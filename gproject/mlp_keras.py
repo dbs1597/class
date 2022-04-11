@@ -14,3 +14,5 @@ model.add(tf.keras.layers.Dense(units=1, activation='sigmoid'))
 model.compile(loss='mse', optimizer=tf.keras.optimizers.SGD(lr=0.3))
 model.fit(X, T, batch_size=1, epochs=10000)
 print(model.predict(X))
+
+

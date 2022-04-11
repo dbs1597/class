@@ -61,8 +61,8 @@ def fit():
 
             W2 += -learning_rate * np.dot(layer1.T, layer2_delta)
             W1 += -learning_rate * np.dot(layer0.T, layer1_delta)
-            B2 += -learning_rate * np.sum(layer2_delta, axis = 0)
-            B1 += -learning_rate * np.sum(layer1_delta, axis = 0)
+            B2 += -learning_rate * np.sum(layer2_delta, axis=0)
+            B1 += -learning_rate * np.sum(layer1_delta, axis=0)
 
 
 fit()
