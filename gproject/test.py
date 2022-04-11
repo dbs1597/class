@@ -1,18 +1,15 @@
+import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
- 
+import tensorflow as tf
+# from tensorflow.keras.utils import to_categorical
 
-def relu(x):
-    return np.maximum(x, 0)
+# 데이터 불러오기 (319795 * 18)
+df = pd.read_csv('./testcsv.csv')
+# print(df)
 
+dfpandas = pd.get_dummies(df)
+dfpandas.to_csv("./df_sample.csv")
 
-def sigmoid(x):
-    return 1.0 / (1.0 + np.exp(-x))
+# dftensor = tf.one_hot(df)
 
-
-x = np.arange(-10.0, 10.0, 0.1)
-y = relu(x)
-z = sigmoid(x)
-# plt.plot(x, y)
-plt.plot(x, z)
-plt.show()
+# dfkeras = to_categorical(df)
